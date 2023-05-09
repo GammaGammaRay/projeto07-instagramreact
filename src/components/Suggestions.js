@@ -1,8 +1,9 @@
 import React from "react";
 
 let suggestions = [
-  { profile: "bad.vibes.memes", img: "img/badvibe.jpg", text: "segue você" },
-  { profile: "bad.vibes.memes", img: "img/badvibe.jpg", text: "segue você" },
+  { profile: "bad.vibes.memes", img: "img/badvibe.jpg", text: "Segue você" },
+  { profile: "iwouldpreferno", img: "img/iwouldpreferno.jpg", text: "Segue você" },
+  { profile: "humans_of_capitalism", img: "img/humans_of_capitalism.jpg", text: "Novo no Instagram" },
 ];
 
 function Suggestions() {

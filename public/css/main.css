@@ -168,7 +168,28 @@ ion-icon {
     align-items: center;
 }
 
+.likes {
+    display: flex;
+    flex-direction: row;
+    margin-left: 16px;
+}
 
+.likes-text {
+    margin-left: 10px;
+}
+
+.likes span {
+    font-weight: 700 ;
+}
+
+.likes-profile {
+    height: 20px;
+    width: 20px;
+}
+
+#red-heart {
+    fill: red;
+}
 
 /* SIDEBAR */
 
