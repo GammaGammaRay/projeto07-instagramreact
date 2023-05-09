@@ -37,6 +37,8 @@ export default function Posts() {
   );
 }
 
+
+// POST
 function Post({ profileImg, profile, img, numlikes }) {
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -44,6 +46,7 @@ function Post({ profileImg, profile, img, numlikes }) {
   const [heartAnim, startHeartAnim] = useState(false);
   console.log("heartAnim value:", heartAnim);
 
+  // Delayed set anim to false
   useEffect(() => {
     if (heartAnim) {
       setTimeout(() => {
@@ -62,6 +65,7 @@ function Post({ profileImg, profile, img, numlikes }) {
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </div>
       <div className="post__content">
+        {/* Porque a animação não funciona e já dá load com o coração renderizado?  CSS está em main.css:193*/}
         <img
           data-test="post-image"
           onDoubleClick={likeByImg}
