@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/projeto02-instagram
 /.pnp
 .pnp.js
 
@@ -18,7 +19,7 @@
 .env.test.local
 .env.production.local
 
-/projeto02-instagram
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
