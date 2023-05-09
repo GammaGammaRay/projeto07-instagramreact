@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 let posts = [
   {
@@ -40,7 +40,17 @@ export default function Posts() {
 function Post({ profileImg, profile, img, numlikes }) {
   const [saved, setSaved] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [likeCount, setNumLikes] = useState(numlikes)
+  const [likeCount, setNumLikes] = useState(numlikes);
+  const [heartAnim, startHeartAnim] = useState(false);
+  console.log("heartAnim value:", heartAnim);
+
+  useEffect(() => {
+    if (heartAnim) {
+      setTimeout(() => {
+        startHeartAnim(false);
+      }, 1000);
+    }
+  }, [heartAnim]);
 
   return (
     <div className="post_container" data-test="post">
@@ -52,7 +62,18 @@ function Post({ profileImg, profile, img, numlikes }) {
         <ion-icon name="ellipsis-horizontal"></ion-icon>
       </div>
       <div className="post__content">
-        <img data-test="post-image" src={img} alt="" />
+        <img
+          data-test="post-image"
+          onDoubleClick={likeByImg}
+          src={img}
+          alt=""
+        />{" "}
+        <ion-icon
+          className={
+            heartAnim === true ? "image-heart animated" : "image-heart hidden"
+          }
+          name="heart"
+        />
       </div>
       <div className="post__bottom">
         <div className="post__bottom__iconsLeft">
@@ -64,6 +85,7 @@ function Post({ profileImg, profile, img, numlikes }) {
                 id="red-heart"
                 onClick={handleLikedClick}
                 name="heart"
+                data-test="like-post"
               />
             )}
           </div>
@@ -76,11 +98,11 @@ function Post({ profileImg, profile, img, numlikes }) {
           </a>
         </div>
         <div style={{ marginRight: "16px" }}>
-          {!saved ? (
-            <ion-icon onClick={handleSavedClick} name="bookmark-outline" />
-          ) : (
-            <ion-icon onClick={handleSavedClick} name="bookmark" />
-          )}
+          <ion-icon
+            onClick={handleSavedClick}
+            name={!saved ? "bookmark-outline" : "bookmark"}
+            data-test="save-post"
+          />
         </div>
       </div>
       <div className="likes">
@@ -110,6 +132,18 @@ function Post({ profileImg, profile, img, numlikes }) {
       setSaved(true);
     } else {
       setSaved(false);
+    }
+  }
+
+  function likeByImg(e) {
+    if (!liked) {
+      setLiked(true);
+      setNumLikes(likeCount + 1);
+      startHeartAnim(true);
+    } else {
+      setLiked(false);
+      setNumLikes(likeCount - 1);
+      
     }
   }
 }
